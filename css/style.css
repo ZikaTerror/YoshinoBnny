@@ -1,0 +1,109 @@
+/* Reset CSS */
+html, body, div, span, h1, h2, h3, p, a, img, ul, li {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* Variáveis CSS */
+:root {
+    --primary-color: #634020;
+    --secondary-color: #FFF7F7;
+    --text-shadow: 0.088rem 0.088rem 0.125rem #63493B;
+}
+
+/* Layout Base */
+body {
+    line-height: 1;
+    min-height: 100vh;
+    background: linear-gradient(0deg, #594A34 40%, #FFFFFF 100%);
+    font-family: 'Karla', sans-serif;
+}
+
+#wrapper {
+    display: flex;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+/* Tipografia */
+h2 {
+    font-family: 'Gaegu', cursive;
+    font-size: 2em;
+    color: var(--primary-color);
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+#text02 {
+    font-family: 'Hi Melody', cursive;
+    color: var(--secondary-color);
+    text-shadow: var(--text-shadow);
+}
+
+/* Componentes */
+.icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.5rem 0;
+}
+
+.icons li a {
+    display: block;
+    width: 2.5rem;
+    height: 2.5rem;
+    transition: transform 0.3s ease;
+}
+
+.icons li a:hover {
+    transform: scale(1.1);
+}
+
+.image.full img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Tabelas */
+.table-wrapper {
+    overflow-x: auto;
+    margin: 2rem 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(202,184,217,0.184);
+}
+
+th, td {
+    border: 1px solid #CAB8D9;
+    padding: 0.75rem;
+    text-align: center;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    #wrapper {
+        padding: 1rem;
+    }
+    
+    h2 {
+        font-size: 1.75em;
+    }
+    
+    .icons {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .table-wrapper {
+        font-size: 0.875em;
+    }
+}
