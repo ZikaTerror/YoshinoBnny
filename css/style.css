@@ -688,7 +688,8 @@ p spoiler-text {
 }
 
 #icons01 a svg {
-	fill: #FFF7F7;
+	fill: #FFF7F7 !important;
+    color: #FFF7F7 !important;
 }
 
 #icons01 li a+svg {
