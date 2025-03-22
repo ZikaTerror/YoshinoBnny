@@ -1,65 +1,153 @@
-/* Reset CSS */
-html, body, div, span, h1, h2, h3, p, a, img, ul, li {
+/* Reset CSS completo original */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, table, caption,
+tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
     margin: 0;
     padding: 0;
     border: 0;
+    font-size: 100%;
     font: inherit;
     vertical-align: baseline;
 }
 
-/* Variáveis CSS */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body { line-height: 1; }
+ol, ul { list-style: none; }
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after,
+q:before, q:after { content: ''; content: none; }
+
+/* Variáveis CSS atualizadas */
 :root {
     --primary-color: #634020;
     --secondary-color: #FFF7F7;
     --text-shadow: 0.088rem 0.088rem 0.125rem #63493B;
+    --background-height: 100vh;
+    --viewport-height: 100vh;
+    --border-radius: 0.25em;
 }
 
-/* Layout Base */
+/* Layout base original + modificações */
 body {
-    line-height: 1;
-    min-height: 100vh;
+    -webkit-text-size-adjust: none;
+    min-height: var(--viewport-height);
+    min-width: 320px;
+    overflow-x: hidden;
+    word-wrap: break-word;
     background: linear-gradient(0deg, #594A34 40%, #FFFFFF 100%);
     font-family: 'Karla', sans-serif;
+    line-height: 1.0;
+}
+
+body:before {
+    content: '';
+    display: block;
+    height: var(--background-height);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 0;
 }
 
 #wrapper {
+    -webkit-overflow-scrolling: touch;
+    align-items: center;
     display: flex;
-    min-height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    min-height: var(--viewport-height);
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
     padding: 2rem;
 }
 
-/* Tipografia */
+#main {
+    --alignment: left;
+    --flex-alignment: flex-start;
+    align-items: center;
+    display: flex;
+    flex-grow: 0;
+    flex-shrink: 0;
+    justify-content: center;
+    max-width: 100%;
+    position: relative;
+    text-align: var(--alignment);
+    transition: opacity 1s ease, filter 1s ease;
+}
+
+/* Tipografia combinada */
+h1, h2, h3, p {
+    direction: ltr;
+    position: relative;
+}
+
 h2 {
     font-family: 'Gaegu', cursive;
     font-size: 2em;
     color: var(--primary-color);
     text-align: center;
     margin: 1.5rem 0;
+    font-variant: small-caps;
+    line-height: 1.5;
 }
 
-#text02 {
-    font-family: 'Hi Melody', cursive;
+#text03, #text06, #text07, #text08 {
+    font-variant: small-caps;
+    color: #634020;
+    font-family: 'Gaegu', cursive;
+    line-height: 1.5;
+    text-align: center;
+}
+
+#text02, #text04, #text05, #text09 {
     color: var(--secondary-color);
+    font-family: 'Hi Melody', cursive;
     text-shadow: var(--text-shadow);
+    text-align: center;
+    line-height: 1.5;
 }
 
-/* Componentes */
+/* Componentes atualizados */
 .icons {
     display: flex;
-    justify-content: center;
-    gap: 1rem;
-    padding: 1.5rem 0;
+    flex-wrap: wrap;
+    justify-content: var(--flex-alignment);
+    letter-spacing: 0;
+    padding: 0;
+    gap: 0.75rem;
 }
 
 .icons li a {
-    display: block;
-    width: 2.5rem;
-    height: 2.5rem;
-    transition: transform 0.3s ease;
+    height: 1em;
+    width: 1em;
+    transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
 }
 
-.icons li a:hover {
-    transform: scale(1.1);
+.icons li a svg {
+    fill: #FFF7F7;
+    transition: fill 0.25s ease;
+}
+
+.image.full {
+    display: block;
+    line-height: 0;
+    max-width: 100%;
+    position: relative;
 }
 
 .image.full img {
@@ -67,11 +155,15 @@ h2 {
     height: auto;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.25s ease, filter 0.25s ease;
 }
 
-/* Tabelas */
+/* Tabelas original + modificações */
 .table-wrapper {
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
     overflow-x: auto;
+    overflow-y: hidden;
     margin: 2rem 0;
 }
 
@@ -83,27 +175,68 @@ table {
 
 th, td {
     border: 1px solid #CAB8D9;
-    padding: 0.75rem;
+    padding: 0.5rem 0.6875rem;
     text-align: center;
+    font-family: 'Pixelify Sans', cursive;
 }
 
-/* Responsivo */
-@media (max-width: 768px) {
-    #wrapper {
-        padding: 1rem;
+/* Animações originais */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.is-loading #main {
+    filter: blur(0.28125rem);
+    opacity: 0;
+}
+
+.is-ready #main {
+    opacity: 1;
+    filter: none;
+}
+
+/* Media queries combinadas */
+@media (max-width: 1680px) {
+    html { font-size: 13pt; }
+}
+
+@media (max-width: 1280px) {
+    html { font-size: 13pt; }
+}
+
+@media (max-width: 980px) {
+    html { font-size: 11pt; }
+    #main > .inner {
+        --padding-horizontal: 2rem;
+        --padding-vertical: 3rem;
     }
-    
-    h2 {
-        font-size: 1.75em;
+}
+
+@media (max-width: 736px) {
+    .image.full img {
+        height: 11.09375rem !important;
     }
-    
-    .icons {
-        flex-wrap: wrap;
-    }
+    h2 { font-size: 1.75em; }
 }
 
 @media (max-width: 480px) {
-    .table-wrapper {
-        font-size: 0.875em;
+    #main > .inner {
+        --spacing: 0.65625rem;
+    }
+    .image.full img {
+        height: 8.875rem !important;
+    }
+}
+
+@media (max-width: 360px) {
+    #main > .inner {
+        --padding-horizontal: 1.5rem;
+        --padding-vertical: 2.25rem;
+        --spacing: 0.5625rem;
+    }
+    h2 { font-size: 1.5em; }
+    .image.full img {
+        height: 7.765625rem !important;
     }
 }
